@@ -18,6 +18,16 @@ func Break() {
 	panic(BreakSignal{})
 }
 
+// NoCopy will unable making copies of the
+// struct it is part of
+type NoCopy struct{}
+
+// Lock is to implement sync.Locker
+func (l NoCopy) Lock() {}
+
+// UnLock is to implement sync.Locker
+func (l NoCopy) UnLock() {}
+
 // valueOf will return the reflect.Value of the object
 // or return it back if it was already a reflect.Value
 func valueOf(i interface{}) reflect.Value {
